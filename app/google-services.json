@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307276984118",
+    "project_id": "api-peliculas-969a1",
+    "storage_bucket": "api-peliculas-969a1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307276984118:android:5f01830ae57d34d0000d97",
+        "android_client_info": {
+          "package_name": "com.fabridev.apppeliculas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Td3sKsQTkZB8okoj-CEob7Vi1IH-PNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

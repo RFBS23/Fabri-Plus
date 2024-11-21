@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Fabri Plus</string>
+    <string name="text_inicio">Mira peliculas totalmente premium,\ncientos de películas que te esperan\ndirectamente en el teléfono</string>
+    <string name="btn_inicio">Empezar</string>
+    <string name="welcome">Bienvenidos a Fabri Plus</string>
+    <string name="email_dash">correo : fabriziobarrios92@gmail.com</string>
+    <string name="search_dash">Buscar Peliculas</string>
+    <string name="vermas_dash">Ver Mas</string>
+    <string name="todas_dash">Todas</string>
+    <string name="premieres_dash">proximos Estrenos</string>
+    <string name="estrenos_dash">Estrenos</string>
+    <string name="comedia_dash">Comedia</string>
+    <string name="animacion_dash">Animación</string>
+    <string name="accion_dash">Acción</string>
+    <string name="aventura_dash">Aventura</string>
+    <string name="terror_dash">Terror</string>
+    <string name="crimen_dash">Crimen</string>
+    <string name="fantasia_dash">Fantasía</string>
+    <string name="drama_dash">Drama</string>
+    <string name="Romance_dash">Romance</string>
+    <string name="familia_dash">Familia</string>
+    <string name="recientes_dash">Recientes</string>
+    <string name="suspenso_dash">Suspenso</string>
+    <string name="cienciaficcion_dash">Ciencia Ficción</string>
+    <string name="foreign_dash">Foreign (Extranjeras)</string>
+    <string name="documental_dash">Documental</string>
+    <string name="animes_dash">Animes</string>
+    <string name="guerra_dash">Guerra</string>
+    <string name="historia_dash">Historia</string>
+    <string name="pelitv_dash">Peliculas de Television</string>
+    <string name="misterio_dash">Misterio</string>
+    <string name="reciente_dash">Recientes</string>
+
+    <!--bottom-->
+    <string name="Inicio_bottom">Inicio</string>
+    <string name="favoritos_bottom">Favoritos</string>
+    <string name="series_botton">Series</string>
+    <string name="perfil_bottom">Más</string>
+
+    <!--slider-->
+    <string name="btnSliderVH">Ver Descripcion</string>
+
+    <!--api-->
+    <string name="year_api">Año</string>
+    <string name="name_api">Nombre</string>
+    <string name="genre_api">Genero</string>
+    <string name="age_api">Edad</string>
+    <string name="time_api">Tiempo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

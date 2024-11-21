@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="main_color">#252B45</color>
+    <color name="dark_blue">#414863</color>
+    <color name="red">#FF0000</color>
+    <color name="btn_navigator">#5468b9</color>
+    <color name="btn_navigator2">#07130f</color>
+
+    <!--colores botones de navegacion-->
+    <color name="btn_inicio">#cfe2ff</color>
+    <color name="btn_favorito">#f8d7da</color>
+    <color name="btn_series">#fff3cd</color>
+    <color name="btn_info">#cff4fc</color>
+
+    <color name="text_inicio">#052c65</color>
+    <color name="text_favorito">#57151d</color>
+    <color name="text_series">#654c04</color>
+    <color name="text_info">#055161</color>
+    <color name="texto_navigator">#212529</color>
+
+</resources>
