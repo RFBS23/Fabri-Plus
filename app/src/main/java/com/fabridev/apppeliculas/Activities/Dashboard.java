@@ -1,5 +1,6 @@
 package com.fabridev.apppeliculas.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -51,7 +52,6 @@ public class Dashboard extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         database = FirebaseDatabase.getInstance();
-
         loadUI();
         activitys();
 

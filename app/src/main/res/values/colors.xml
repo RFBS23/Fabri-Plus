@@ -20,4 +20,9 @@
     <color name="text_info">#055161</color>
     <color name="texto_navigator">#212529</color>
 
+    <!--intro-->
+    <color name="intro_bg">#1e212b</color>
+    <color name="btn_next_intro">#6366f1</color>
+    <color name="lavender">#8692f7</color>
+    <color name="grey">#808080</color>
 </resources>

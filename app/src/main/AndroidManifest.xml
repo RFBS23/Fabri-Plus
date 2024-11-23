@@ -16,18 +16,7 @@
         android:theme="@style/Theme.AppPeliculas"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.playmovie_Activity"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation|screenSize" />
-        <activity
-            android:name=".Activities.DetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Dashboard"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".Activities.InicioActivity"
+            android:name=".Activities.NavigationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +24,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".Activities.mainscreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.GetStarted"
+            android:exported="false"/>
+        <activity
+            android:name=".Activities.IntroActivity" />
+        <activity
+            android:name=".Activities.playmovie_Activity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activities.DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Dashboard"
+            android:exported="true" />
     </application>
 
 </manifest>

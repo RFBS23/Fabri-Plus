@@ -43,7 +43,7 @@
                 android:id="@+id/blurView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/blur_bg"
                 app:blurOverlayColor="#90000000"
                 app:layout_constraintBottom_toBottomOf="@+id/filmPic"
@@ -57,6 +57,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:paddingTop="16dp"
                     android:paddingBottom="32dp">
 

@@ -50,6 +50,18 @@
     <!--api-->
     <string name="btnreproducir_details">Reproducir</string>
 
+    <!--intro-->
+    <string name="btn_next_intro">Siguiente</string>
+    <string name="btn_back_intro">Anterior</string>
+    <string name="btn_skip_intro">Saltar</string>
+    <string name="screen1">¡Bienvenido a FabriPlus!</string>
+    <string name="screen2">Tu rincón del entretenimiento está aquí</string>
+    <string name="screen3">En FabriPlus, vivirás el cine y las series como nunca antes</string>
+    <string name="screen1desc">Explora un mundo de entretenimiento con las mejores películas y, muy pronto, tus series favoritas. Todo en un solo lugar, pensado para ti.</string>
+    <string name="screen2desc">Disfruta de una experiencia única con los últimos estrenos y prepárate para sumergirte en increíbles series que vienen pronto.</string>
+    <string name="screen3desc">Descubre películas emocionantes y prepárate para las mejores series que estarán disponibles próximamente.</string>
+    <string name="startDesc">Create a long video or shorts and upload on youtube. Interact with your subscribers on youtube live.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
