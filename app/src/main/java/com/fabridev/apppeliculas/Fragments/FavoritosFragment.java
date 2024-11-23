@@ -1,4 +1,4 @@
-package com.fabridev.apppeliculas.Activities;
+package com.fabridev.apppeliculas.Fragments;
 
 import android.os.Bundle;
 import android.os.Handler;

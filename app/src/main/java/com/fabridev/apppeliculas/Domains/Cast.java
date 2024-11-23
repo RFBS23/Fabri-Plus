@@ -22,6 +22,6 @@ public class Cast implements Serializable {
     }
 
     public void setActor(String actor) {
-        Actor = actor;
+        this.Actor = actor;
     }
 }

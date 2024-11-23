@@ -65,8 +65,8 @@ public class SlidersAdapter extends RecyclerView.Adapter<SlidersAdapter.SliderVi
         public SliderViewholder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageSlider);
-            nametxt = itemView.findViewById(R.id.nametxt);
-            genretxt = itemView.findViewById(R.id.genretxt);
+            nametxt = itemView.findViewById(R.id.nameTxt);
+            genretxt = itemView.findViewById(R.id.genreView);
             agetxt = itemView.findViewById(R.id.agetxt);
             yeartxt = itemView.findViewById(R.id.yeartxt);
             timetxt = itemView.findViewById(R.id.timetxt);

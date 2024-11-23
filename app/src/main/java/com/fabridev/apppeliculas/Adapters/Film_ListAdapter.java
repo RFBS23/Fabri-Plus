@@ -1,6 +1,7 @@
 package com.fabridev.apppeliculas.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.fabridev.apppeliculas.Activities.DetailsActivity;
 import com.fabridev.apppeliculas.Domains.Film;
 import com.fabridev.apppeliculas.R;
 
@@ -44,11 +46,11 @@ public class Film_ListAdapter extends RecyclerView.Adapter<Film_ListAdapter.View
                 .load(items.get(position).getPoster())
                 .apply(requestOptions)
                 .into(holder.pic);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("object", items.get(position));
+            context.startActivity(intent);
         });
     }
 
@@ -63,7 +65,7 @@ public class Film_ListAdapter extends RecyclerView.Adapter<Film_ListAdapter.View
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            titletxt = itemView.findViewById(R.id.nametxt);
+            titletxt = itemView.findViewById(R.id.nameTxt);
             pic = itemView.findViewById(R.id.pic);
         }
     }

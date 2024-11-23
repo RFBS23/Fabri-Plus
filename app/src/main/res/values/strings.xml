@@ -46,6 +46,10 @@
     <string name="genre_api">Genero</string>
     <string name="age_api">Edad</string>
     <string name="time_api">Tiempo</string>
+
+    <!--api-->
+    <string name="btnreproducir_details">Reproducir</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

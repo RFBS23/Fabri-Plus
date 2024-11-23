@@ -23,6 +23,10 @@ import com.fabridev.apppeliculas.Adapters.Film_ListAdapter;
 import com.fabridev.apppeliculas.Adapters.SlidersAdapter;
 import com.fabridev.apppeliculas.Domains.Film;
 import com.fabridev.apppeliculas.Domains.SliderItems;
+import com.fabridev.apppeliculas.Fragments.FavoritosFragment;
+import com.fabridev.apppeliculas.Fragments.HomeFragment;
+import com.fabridev.apppeliculas.Fragments.InfoFragment;
+import com.fabridev.apppeliculas.Fragments.SeriesFragment;
 import com.fabridev.apppeliculas.R;
 import com.fabridev.apppeliculas.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +62,25 @@ public class Dashboard extends AppCompatActivity {
         initComedia();
         initAnimacion();
         inittodas();
+        initAccion();
+        initRecientes();
+        initEstrenos();
+        initAventura();
+        initFantasia();
+        initFamilia();
+        initTerror();
+        initSuspenso();
+        initDocumental();
+        initcficion();
+        initcrimen();
+        initForeign();
+        initDrama();
+        initRomance();
+        initAnimes();
+        initGuerra();
+        initHistoria();
+        initPelisTV();
+        initMisterio();
     }
 
     ActivityMainBinding binding;
@@ -236,6 +259,124 @@ public class Dashboard extends AppCompatActivity {
         });
     }
 
+    private void initBanner(){
+        DatabaseReference myRef = database.getReference("Banners");
+        binding.progressBanner.setVisibility(View.VISIBLE);
+        ArrayList<SliderItems> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(SliderItems.class));
+                    }
+                    banners(items);
+                    binding.progressBanner.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void banners(ArrayList<SliderItems> items){
+        binding.viewPagerBanners.setAdapter(new SlidersAdapter(items, binding.viewPagerBanners));
+        binding.viewPagerBanners.setClipToPadding(false);
+        binding.viewPagerBanners.setClipChildren(false);
+        binding.viewPagerBanners.setOffscreenPageLimit(4);
+        binding.viewPagerBanners.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1-Math.abs(position);
+                page.setScaleY(0.85f+r*0.15f);
+            }
+        });
+        binding.viewPagerBanners.setPageTransformer(compositePageTransformer);
+        binding.viewPagerBanners.setCurrentItem(1);
+        binding.viewPagerBanners.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                sliderhandler.removeCallbacks(sliderRunnable);
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sliderhandler.removeCallbacks(sliderRunnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sliderhandler.postDelayed(sliderRunnable, 2000);
+    }
+
+    /**
+     * todas las demas categorias
+     * */
+
+    private void initRecientes(){
+        DatabaseReference myRef = database.getReference("Recientes");
+        binding.progressrecientes.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewrecientes.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewrecientes.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressrecientes.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initEstrenos(){
+        DatabaseReference myRef = database.getReference("Estrenos");
+        binding.progressestreno.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewestreno.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewestreno.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressestreno.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void inittodas(){
         DatabaseReference myRef = database.getReference("Todas");
         binding.progresstodas.setVisibility(View.VISIBLE);
@@ -314,19 +455,48 @@ public class Dashboard extends AppCompatActivity {
         });
     }
 
-    private void initBanner(){
-        DatabaseReference myRef = database.getReference("Banners");
-        binding.progressBanner.setVisibility(View.VISIBLE);
-        ArrayList<SliderItems> items = new ArrayList<>();
+    private void initAccion(){
+        DatabaseReference myRef = database.getReference("Accion");
+        binding.progressaccion.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for(DataSnapshot issue:snapshot.getChildren()){
-                        items.add(issue.getValue(SliderItems.class));
+                        items.add(issue.getValue(Film.class));
                     }
-                    banners(items);
-                    binding.progressBanner.setVisibility(View.GONE);
+                    if(!items.isEmpty()){
+                        binding.recyclerViewaccion.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewaccion.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressaccion.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    
+    private void initAventura(){
+        DatabaseReference myRef = database.getReference("Aventura");
+        binding.progressaventura.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewaventura.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewaventura.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressaventura.setVisibility(View.GONE);
                 }
             }
 
@@ -337,43 +507,394 @@ public class Dashboard extends AppCompatActivity {
         });
     }
 
-    private void banners(ArrayList<SliderItems> items){
-        binding.viewPagerBanners.setAdapter(new SlidersAdapter(items, binding.viewPagerBanners));
-        binding.viewPagerBanners.setClipToPadding(false);
-        binding.viewPagerBanners.setClipChildren(false);
-        binding.viewPagerBanners.setOffscreenPageLimit(4);
-        binding.viewPagerBanners.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+    private void initFantasia(){
+        DatabaseReference myRef = database.getReference("Fantasia");
+        binding.progressfantasia.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1-Math.abs(position);
-                page.setScaleY(0.85f+r*0.15f);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewfantasia.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewfantasia.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressfantasia.setVisibility(View.GONE);
+                }
             }
-        });
-        binding.viewPagerBanners.setPageTransformer(compositePageTransformer);
-        binding.viewPagerBanners.setCurrentItem(1);
-        binding.viewPagerBanners.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+
             @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                sliderhandler.removeCallbacks(sliderRunnable);
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        sliderhandler.removeCallbacks(sliderRunnable);
+    private void initFamilia(){
+        DatabaseReference myRef = database.getReference("Familia");
+        binding.progressfamilia.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewfamilia.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewfamilia.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressfamilia.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        sliderhandler.postDelayed(sliderRunnable, 2000);
+    private void initTerror(){
+        DatabaseReference myRef = database.getReference("Terror");
+        binding.progressterror.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewterror.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewterror.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressterror.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initSuspenso(){
+        DatabaseReference myRef = database.getReference("Suspenso");
+        binding.progresssuspenso.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewsuspenso.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewsuspenso.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progresssuspenso.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initDocumental(){
+        DatabaseReference myRef = database.getReference("Documental");
+        binding.progressdocumental.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewdocumental.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewdocumental.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressdocumental.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initcficion(){
+        DatabaseReference myRef = database.getReference("Cienciaficcion");
+        binding.progresscficcion.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewcficcion.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewcficcion.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progresscficcion.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initcrimen(){
+        DatabaseReference myRef = database.getReference("Crimen");
+        binding.progresscrimen.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewcrimen.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewcrimen.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progresscrimen.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initForeign(){
+        DatabaseReference myRef = database.getReference("Foreign");
+        binding.progressforeign.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewforeign.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewforeign.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressforeign.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initDrama(){
+        DatabaseReference myRef = database.getReference("Drama");
+        binding.progressdrama.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewdrama.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewdrama.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressdrama.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initRomance(){
+        DatabaseReference myRef = database.getReference("Romance");
+        binding.progressromance.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewromance.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewromance.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressromance.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initAnimes(){
+        DatabaseReference myRef = database.getReference("Animes");
+        binding.progressanimes.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewanimes.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewanimes.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressanimes.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initGuerra(){
+        DatabaseReference myRef = database.getReference("Estrenos");
+        binding.progressestreno.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewestreno.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewestreno.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressestreno.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initHistoria(){
+        DatabaseReference myRef = database.getReference("Historia");
+        binding.progresshistoria.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewhistoria.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewhistoria.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progresshistoria.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initPelisTV(){
+        DatabaseReference myRef = database.getReference("Peliculatelevision");
+        binding.progresspelitv.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewpelitv.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewpelitv.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progresspelitv.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initMisterio(){
+        DatabaseReference myRef = database.getReference("Misterio");
+        binding.progressmisterio.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewmisterio.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewmisterio.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressmisterio.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }
