@@ -63,7 +63,6 @@ public class Dashboard extends AppCompatActivity {
         initAnimacion();
         inittodas();
         initAccion();
-        initRecientes();
         initEstrenos();
         initAventura();
         initFantasia();
@@ -324,32 +323,6 @@ public class Dashboard extends AppCompatActivity {
     /**
      * todas las demas categorias
      * */
-
-    private void initRecientes(){
-        DatabaseReference myRef = database.getReference("Recientes");
-        binding.progressrecientes.setVisibility(View.VISIBLE);
-        ArrayList<Film> items = new ArrayList<>();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for(DataSnapshot issue:snapshot.getChildren()){
-                        items.add(issue.getValue(Film.class));
-                    }
-                    if(!items.isEmpty()){
-                        binding.recyclerViewrecientes.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
-                        binding.recyclerViewrecientes.setAdapter(new Film_ListAdapter(items));
-                    }
-                    binding.progressrecientes.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     private void initEstrenos(){
         DatabaseReference myRef = database.getReference("Estrenos");

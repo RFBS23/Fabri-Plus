@@ -19,15 +19,15 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_width="110dp"
+        android:id="@+id/btnTrailer"
+        android:layout_width="90dp"
         android:background="@drawable/red_bg"
         style="@android:style/Widget.Button"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:textColor="@color/white"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:text="@string/btnSliderVH"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,4 +105,5 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/genreView"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

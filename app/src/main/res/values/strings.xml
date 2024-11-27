@@ -2,13 +2,13 @@
     <string name="app_name">Fabri Plus</string>
     <string name="text_inicio">Mira peliculas totalmente premium,\ncientos de películas que te esperan\ndirectamente en el teléfono</string>
     <string name="btn_inicio">Empezar</string>
-    <string name="welcome">Bienvenidos a Fabri Plus</string>
+    <string name="welcome">Bienvenidos \n a Fabri Plus</string>
     <string name="email_dash">correo : fabriziobarrios92@gmail.com</string>
     <string name="search_dash">Buscar Peliculas</string>
     <string name="vermas_dash">Ver Mas</string>
     <string name="todas_dash">Todas</string>
-    <string name="premieres_dash">proximos Estrenos</string>
-    <string name="estrenos_dash">Estrenos</string>
+    <string name="premieres_dash">Proximos Estrenos (2024 - 2025)</string>
+    <string name="estrenos_dash">Estrenos Recientes</string>
     <string name="comedia_dash">Comedia</string>
     <string name="animacion_dash">Animación</string>
     <string name="accion_dash">Acción</string>
@@ -38,7 +38,7 @@
     <string name="perfil_bottom">Más</string>
 
     <!--slider-->
-    <string name="btnSliderVH">Ver Descripcion</string>
+    <string name="btnSliderVH">Ver Trailer</string>
 
     <!--api-->
     <string name="year_api">Año</string>
@@ -49,18 +49,6 @@
 
     <!--api-->
     <string name="btnreproducir_details">Reproducir</string>
-
-    <!--intro-->
-    <string name="btn_next_intro">Siguiente</string>
-    <string name="btn_back_intro">Anterior</string>
-    <string name="btn_skip_intro">Saltar</string>
-    <string name="screen1">¡Bienvenido a FabriPlus!</string>
-    <string name="screen2">Tu rincón del entretenimiento está aquí</string>
-    <string name="screen3">En FabriPlus, vivirás el cine y las series como nunca antes</string>
-    <string name="screen1desc">Explora un mundo de entretenimiento con las mejores películas y, muy pronto, tus series favoritas. Todo en un solo lugar, pensado para ti.</string>
-    <string name="screen2desc">Disfruta de una experiencia única con los últimos estrenos y prepárate para sumergirte en increíbles series que vienen pronto.</string>
-    <string name="screen3desc">Descubre películas emocionantes y prepárate para las mejores series que estarán disponibles próximamente.</string>
-    <string name="startDesc">Create a long video or shorts and upload on youtube. Interact with your subscribers on youtube live.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

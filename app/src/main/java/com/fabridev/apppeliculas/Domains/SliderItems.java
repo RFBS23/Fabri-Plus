@@ -7,6 +7,7 @@ public class SliderItems {
     private String age;
     private String year;
     private String time;
+    private String Trailer;
 
     public SliderItems() {
 
@@ -58,5 +59,13 @@ public class SliderItems {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getTrailer() {
+        return Trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        Trailer = trailer;
     }
 }
