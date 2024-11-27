@@ -21,29 +21,23 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Verificar si es la primera vez que se abre la aplicación
         SharedPreferences preferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
         boolean isFirstTime = preferences.getBoolean("isFirstTime", true);
 
         if (!isFirstTime) {
-            // Si no es la primera vez, redirigir directamente al Dashboard
             startActivity(new Intent(IntroActivity.this, Dashboard.class));
-            finish(); // Finalizar la actividad actual
+            finish();
             return;
         }
 
-        // Si es la primera vez, mostrar la pantalla de introducción
         binding = ActivityIntroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Configurar el botón para ir al Dashboard
         binding.btnInicio.setOnClickListener(v -> {
-            // Guardar que ya no es la primera vez
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("isFirstTime", false);
             editor.apply();
 
-            // Ir al Dashboard
             startActivity(new Intent(IntroActivity.this, Dashboard.class));
             finish();
         });

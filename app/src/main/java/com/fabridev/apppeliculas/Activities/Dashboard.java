@@ -72,7 +72,6 @@ public class Dashboard extends AppCompatActivity {
         initDocumental();
         initcficion();
         initcrimen();
-        initForeign();
         initDrama();
         initRomance();
         initAnimes();
@@ -652,32 +651,6 @@ public class Dashboard extends AppCompatActivity {
                         binding.recyclerViewcrimen.setAdapter(new Film_ListAdapter(items));
                     }
                     binding.progresscrimen.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void initForeign(){
-        DatabaseReference myRef = database.getReference("Foreign");
-        binding.progressforeign.setVisibility(View.VISIBLE);
-        ArrayList<Film> items = new ArrayList<>();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for(DataSnapshot issue:snapshot.getChildren()){
-                        items.add(issue.getValue(Film.class));
-                    }
-                    if(!items.isEmpty()){
-                        binding.recyclerViewforeign.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
-                        binding.recyclerViewforeign.setAdapter(new Film_ListAdapter(items));
-                    }
-                    binding.progressforeign.setVisibility(View.GONE);
                 }
             }
 
