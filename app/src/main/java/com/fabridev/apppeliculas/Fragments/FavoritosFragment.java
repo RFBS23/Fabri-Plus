@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class FavoritosFragment extends Fragment {
 
-    private FragmentFavoritosBinding binding; // Cambia a FragmentFavoritosBinding
+    private FragmentFavoritosBinding binding;
     private FirebaseDatabase database;
     private Handler sliderHandler = new Handler();
     private Runnable sliderRunnable = new Runnable() {

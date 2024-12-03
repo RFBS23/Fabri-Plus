@@ -16,9 +16,75 @@
         android:theme="@style/Theme.AppPeliculas"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.DetailsCanales"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMore.HistoriaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMore.MusicalVM"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.MisterioVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.TvVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.GuerraVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.AnimesVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.RomanceVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.DramaVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.CrimenVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.DocumentalVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.SuspensoVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.TerrorVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.FamiliaVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.FantasiaVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.AventuraVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.AccionVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.AnimacionVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.ComediaVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.EstrenoVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMore.CfiVMActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.VerMasActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activities.playmovie_Activity"
-            android:exported="true"
             android:configChanges="orientation|screenSize"
+            android:exported="true"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Activities.DetailsActivity"
@@ -31,6 +97,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -10,7 +10,6 @@ public class SliderItems {
     private String Trailer;
 
     public SliderItems() {
-
     }
 
     public String getImage() {

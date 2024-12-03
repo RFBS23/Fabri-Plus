@@ -129,7 +129,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtestreno"
+                    android:id="@+id/txtvmestreno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -237,7 +237,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/vmComedia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -289,6 +289,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/vmAnimacion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -342,7 +343,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtaccion"
+                    android:id="@+id/vmaccion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -396,7 +397,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtaventura"
+                    android:id="@+id/vmaventura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -450,7 +451,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtfantasia"
+                    android:id="@+id/vmfantasia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -504,7 +505,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtfamilia"
+                    android:id="@+id/vmfamilia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -558,7 +559,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtterror"
+                    android:id="@+id/vmterror"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -612,7 +613,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtsuspenso"
+                    android:id="@+id/vmsuspenso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -666,7 +667,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtdocumental"
+                    android:id="@+id/vmdocumental"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -720,7 +721,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtcficcion"
+                    android:id="@+id/vmcficcion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -774,7 +775,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtcrimen"
+                    android:id="@+id/vmcrimen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -828,7 +829,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtdrama"
+                    android:id="@+id/vmdrama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -882,7 +883,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtromance"
+                    android:id="@+id/vmromance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -936,7 +937,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtanimes"
+                    android:id="@+id/vmanimes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -990,7 +991,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtguerra"
+                    android:id="@+id/vmguerra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -1034,6 +1035,60 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tvMusical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/musical_dash"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/vmmusical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vermas_dash"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewmusical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressmusical"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
                     android:id="@+id/tvHistoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1044,7 +1099,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txthistoria"
+                    android:id="@+id/vmhistoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -1098,7 +1153,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtpelitv"
+                    android:id="@+id/vmpelitv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -1152,7 +1207,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtmisterio"
+                    android:id="@+id/vmmisterio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vermas_dash"
@@ -1293,6 +1348,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/series_botton"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/texto_navigator"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/televisor_icon"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_tele"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/tvretro"/>
+            <TextView
+                android:id="@+id/txt_tele"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tele_bottom"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:textColor="@color/texto_navigator"

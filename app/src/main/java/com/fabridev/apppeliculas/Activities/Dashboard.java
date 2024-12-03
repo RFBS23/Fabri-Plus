@@ -24,11 +24,32 @@ import com.fabridev.apppeliculas.Adapters.Film_ListAdapter;
 import com.fabridev.apppeliculas.Adapters.SlidersAdapter;
 import com.fabridev.apppeliculas.Domains.Film;
 import com.fabridev.apppeliculas.Domains.SliderItems;
+import com.fabridev.apppeliculas.Fragments.CanalesFragment;
 import com.fabridev.apppeliculas.Fragments.FavoritosFragment;
 import com.fabridev.apppeliculas.Fragments.HomeFragment;
 import com.fabridev.apppeliculas.Fragments.InfoFragment;
 import com.fabridev.apppeliculas.Fragments.SeriesFragment;
 import com.fabridev.apppeliculas.R;
+import com.fabridev.apppeliculas.ViewMore.AccionVMActivity;
+import com.fabridev.apppeliculas.ViewMore.AnimacionVMActivity;
+import com.fabridev.apppeliculas.ViewMore.AnimesVMActivity;
+import com.fabridev.apppeliculas.ViewMore.AventuraVMActivity;
+import com.fabridev.apppeliculas.ViewMore.CfiVMActivity;
+import com.fabridev.apppeliculas.ViewMore.ComediaVMActivity;
+import com.fabridev.apppeliculas.ViewMore.CrimenVMActivity;
+import com.fabridev.apppeliculas.ViewMore.DocumentalVMActivity;
+import com.fabridev.apppeliculas.ViewMore.DramaVMActivity;
+import com.fabridev.apppeliculas.ViewMore.EstrenoVMActivity;
+import com.fabridev.apppeliculas.ViewMore.FamiliaVMActivity;
+import com.fabridev.apppeliculas.ViewMore.FantasiaVMActivity;
+import com.fabridev.apppeliculas.ViewMore.GuerraVMActivity;
+import com.fabridev.apppeliculas.ViewMore.HistoriaActivity;
+import com.fabridev.apppeliculas.ViewMore.MisterioVMActivity;
+import com.fabridev.apppeliculas.ViewMore.MusicalVM;
+import com.fabridev.apppeliculas.ViewMore.RomanceVMActivity;
+import com.fabridev.apppeliculas.ViewMore.SuspensoVMActivity;
+import com.fabridev.apppeliculas.ViewMore.TerrorVMActivity;
+import com.fabridev.apppeliculas.ViewMore.TvVMActivity;
 import com.fabridev.apppeliculas.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,9 +63,9 @@ public class Dashboard extends AppCompatActivity {
 
     private int selectedTab = 1;
 
-    LinearLayout home_icon, like_icon, series_icon, icon_masinfo;
-    ImageView iv_home, iv_like, iv_series, iv_masinfo;
-    TextView txthome, txt_like, txt_series, txt_masinfo;
+    LinearLayout home_icon, like_icon, series_icon, icon_masinfo, televisor_icon;
+    ImageView iv_home, iv_like, iv_series, iv_masinfo,iv_tele;
+    TextView txthome, txt_like, txt_series, txt_masinfo, txt_tele, txttodas, txtvmestreno, vmComedia, vmAnimacion, vmaccion, vmaventura, vmfantasia, vmfamilia, vmterror, vmsuspenso, vmdocumental, vmcficcion, vmcrimen, vmdrama, vmromance, vmanimes, vmguerra, vmhistoria, vmpelitv, vmmisterio, vmmusical;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +97,10 @@ public class Dashboard extends AppCompatActivity {
         initRomance();
         initAnimes();
         initGuerra();
-        initHistoria();
+        initMusical();
         initPelisTV();
         initMisterio();
+        initHistoria();
     }
 
     ActivityMainBinding binding;
@@ -97,14 +119,41 @@ public class Dashboard extends AppCompatActivity {
         like_icon = findViewById(R.id.like_icon);
         series_icon = findViewById(R.id.series_icon);
         icon_masinfo = findViewById(R.id.icon_masinfo);
+        televisor_icon = findViewById(R.id.televisor_icon);
+
         iv_home = findViewById(R.id.iv_home);
         iv_like = findViewById(R.id.iv_like);
         iv_series = findViewById(R.id.iv_series);
         iv_masinfo = findViewById(R.id.iv_masinfo);
+        iv_tele = findViewById(R.id.iv_tele);
+
         txthome = findViewById(R.id.txthome);
         txt_like = findViewById(R.id.txt_like);
         txt_series = findViewById(R.id.txt_series);
         txt_masinfo = findViewById(R.id.txt_masinfo);
+        txt_tele = findViewById(R.id.txt_tele);
+
+        txttodas = findViewById(R.id.txttodas);
+        txtvmestreno = findViewById(R.id.txtvmestreno);
+        vmComedia = findViewById(R.id.vmComedia);
+        vmAnimacion = findViewById(R.id.vmAnimacion);
+        vmaccion = findViewById(R.id.vmaccion);
+        vmaventura = findViewById(R.id.vmaventura);
+        vmfantasia = findViewById(R.id.vmfantasia);
+        vmfamilia = findViewById(R.id.vmfamilia);
+        vmterror = findViewById(R.id.vmterror);
+        vmsuspenso= findViewById(R.id.vmsuspenso);
+        vmdocumental = findViewById(R.id.vmdocumental);
+        vmcficcion = findViewById(R.id.vmcficcion);
+        vmcrimen = findViewById(R.id.vmcrimen);
+        vmdrama = findViewById(R.id.vmdrama);
+        vmromance = findViewById(R.id.vmromance);
+        vmanimes = findViewById(R.id.vmanimes);
+        vmguerra = findViewById(R.id.vmguerra);
+        vmhistoria = findViewById(R.id.vmhistoria);
+        vmpelitv = findViewById(R.id.vmpelitv);
+        vmmisterio = findViewById(R.id.vmmisterio);
+        vmmusical = findViewById(R.id.vmmusical);
     }
 
     private void activitys() {
@@ -127,14 +176,17 @@ public class Dashboard extends AppCompatActivity {
                     txt_like.setVisibility(View.GONE);
                     txt_series.setVisibility(View.GONE);
                     txt_masinfo.setVisibility(View.GONE);
+                    txt_tele.setVisibility(View.GONE);
 
                     iv_like.setImageResource(R.drawable.corazon);
                     iv_series.setImageResource(R.drawable.series);
                     iv_masinfo.setImageResource(R.drawable.info);
+                    iv_tele.setImageResource(R.drawable.tvretro);
 
                     like_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     series_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     icon_masinfo.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    televisor_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                     txthome.setVisibility(View.VISIBLE);
                     txthome.setTextColor(getResources().getColor(R.color.text_inicio));
@@ -163,14 +215,17 @@ public class Dashboard extends AppCompatActivity {
                     txthome.setVisibility(View.GONE);
                     txt_series.setVisibility(View.GONE);
                     txt_masinfo.setVisibility(View.GONE);
+                    txt_tele.setVisibility(View.GONE);
 
                     iv_home.setImageResource(R.drawable.inicio);
                     iv_series.setImageResource(R.drawable.series);
                     iv_masinfo.setImageResource(R.drawable.info);
+                    iv_tele.setImageResource(R.drawable.tvretro);
 
                     home_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     series_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     icon_masinfo.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    televisor_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                     txt_like.setVisibility(View.VISIBLE);
                     txt_like.setTextColor(getResources().getColor(R.color.text_favorito));
@@ -199,14 +254,17 @@ public class Dashboard extends AppCompatActivity {
                     txthome.setVisibility(View.GONE);
                     txt_like.setVisibility(View.GONE);
                     txt_masinfo.setVisibility(View.GONE);
+                    txt_tele.setVisibility(View.GONE);
 
                     iv_home.setImageResource(R.drawable.inicio);
                     iv_like.setImageResource(R.drawable.corazon);
                     iv_masinfo.setImageResource(R.drawable.info);
+                    iv_tele.setImageResource(R.drawable.tvretro);
 
                     home_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     like_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     icon_masinfo.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    televisor_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                     txt_series.setVisibility(View.VISIBLE);
                     txt_series.setTextColor(getResources().getColor(R.color.text_series));
@@ -222,10 +280,47 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        icon_masinfo.setOnClickListener(new View.OnClickListener() {
+        televisor_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (selectedTab != 4){
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.fragmentContainer, CanalesFragment.class, null)
+                            .commit();
+                    txthome.setVisibility(View.GONE);
+                    txt_series.setVisibility(View.GONE);
+                    txt_like.setVisibility(View.GONE);
+                    txt_masinfo.setVisibility(View.GONE);
+
+                    iv_home.setImageResource(R.drawable.inicio);
+                    iv_series.setImageResource(R.drawable.series);
+                    iv_like.setImageResource(R.drawable.corazon);
+                    iv_masinfo.setImageResource(R.drawable.info);
+
+                    home_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    series_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    like_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    icon_masinfo.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+                    txt_tele.setVisibility(View.VISIBLE);
+                    txt_tele.setTextColor(getResources().getColor(R.color.text_tele));
+                    iv_tele.setImageResource(R.drawable.tvretro);
+                    televisor_icon.setBackgroundResource(R.drawable.tele_redondo);
+
+                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+                    scaleAnimation.setDuration(200);
+                    scaleAnimation.setFillAfter(true);
+                    televisor_icon.startAnimation(scaleAnimation);
+                    selectedTab = 4;
+                }
+            }
+        });
+
+        icon_masinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedTab != 5){
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
                             .replace(R.id.fragmentContainer, InfoFragment.class, null)
@@ -233,14 +328,17 @@ public class Dashboard extends AppCompatActivity {
                     txthome.setVisibility(View.GONE);
                     txt_series.setVisibility(View.GONE);
                     txt_like.setVisibility(View.GONE);
+                    txt_tele.setVisibility(View.GONE);
 
                     iv_home.setImageResource(R.drawable.inicio);
                     iv_series.setImageResource(R.drawable.series);
                     iv_like.setImageResource(R.drawable.corazon);
+                    iv_tele.setImageResource(R.drawable.tvretro);
 
                     home_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     series_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     like_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    televisor_icon.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                     txt_masinfo.setVisibility(View.VISIBLE);
                     txt_masinfo.setTextColor(getResources().getColor(R.color.text_info));
@@ -251,11 +349,266 @@ public class Dashboard extends AppCompatActivity {
                     scaleAnimation.setDuration(200);
                     scaleAnimation.setFillAfter(true);
                     icon_masinfo.startAnimation(scaleAnimation);
-                    selectedTab = 4;
+                    selectedTab = 5;
                 }
             }
         });
+
+        txttodas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                todas();
+            }
+        });
+
+        txtvmestreno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                estrenos();
+            }
+        });
+
+        vmComedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comedia();
+            }
+        });
+
+        vmAnimacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animacion();
+            }
+        });
+
+        vmaccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                accion();
+            }
+        });
+
+        vmaventura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aventura();
+            }
+        });
+
+        vmfantasia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fantasia();
+            }
+        });
+
+        vmfamilia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                familia();
+            }
+        });
+
+        vmterror.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                terror();
+            }
+        });
+
+        vmsuspenso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                suspenso();
+            }
+        });
+
+        vmdocumental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                documental();
+            }
+        });
+
+        vmcficcion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cficcion();
+            }
+        });
+
+        vmcrimen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                crimen();
+            }
+        });
+
+        vmdrama.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drama();
+            }
+        });
+
+        vmromance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                romance();
+            }
+        });
+
+        vmanimes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animes();
+            }
+        });
+
+        vmguerra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guerra();
+            }
+        });
+
+        vmhistoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                historia();
+            }
+        });
+
+        vmmusical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                musical();
+            }
+        });
+
+        vmpelitv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pelistv();
+            }
+        });
+
+        vmmisterio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                misterio();
+            }
+        });
+
     }
+
+    /*intents vermas*/
+    private void todas () {
+        Intent intent =  new Intent(this, VerMasActivity.class);
+        startActivity(intent);
+    }
+
+    private void  estrenos() {
+        Intent intent = new Intent(this, EstrenoVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void comedia(){
+        Intent intent = new Intent(this, ComediaVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void animacion() {
+        Intent intent = new Intent(this, AnimacionVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void accion() {
+        Intent intent = new Intent(this, AccionVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void aventura() {
+        Intent intent = new Intent(this, AventuraVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void fantasia() {
+        Intent intent = new Intent(this, FantasiaVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void familia() {
+        Intent intent = new Intent(this, FamiliaVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void terror() {
+        Intent intent = new Intent(this, TerrorVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void suspenso() {
+        Intent intent = new Intent(this, SuspensoVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void documental() {
+        Intent intent = new Intent(this, DocumentalVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void cficcion() {
+        Intent intent = new Intent(this, CfiVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void crimen() {
+        Intent intent = new Intent(this, CrimenVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void drama() {
+        Intent intent = new Intent(this, DramaVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void romance() {
+        Intent intent = new Intent(this, RomanceVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void animes() {
+        Intent intent = new Intent(this, AnimesVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void guerra() {
+        Intent intent = new Intent(this, GuerraVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void historia() {
+        Intent intent = new Intent(this, HistoriaActivity.class);
+        startActivity(intent);
+    }
+
+    private void musical() {
+        Intent intent = new Intent(this, MusicalVM.class);
+        startActivity(intent);
+    }
+
+    private void pelistv() {
+        Intent intent = new Intent(this, TvVMActivity.class);
+        startActivity(intent);
+    }
+
+    private void misterio() {
+        Intent intent = new Intent(this, MisterioVMActivity.class);
+        startActivity(intent);
+    }
+    /* fin intents vermas */
 
     private void initBanner(){
         DatabaseReference myRef = database.getReference("Banners");
@@ -740,7 +1093,7 @@ public class Dashboard extends AppCompatActivity {
     }
 
     private void initGuerra(){
-        DatabaseReference myRef = database.getReference("Estrenos");
+        DatabaseReference myRef = database.getReference("Guerra");
         binding.progressestreno.setVisibility(View.VISIBLE);
         ArrayList<Film> items = new ArrayList<>();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -781,6 +1134,31 @@ public class Dashboard extends AppCompatActivity {
                         binding.recyclerViewhistoria.setAdapter(new Film_ListAdapter(items));
                     }
                     binding.progresshistoria.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void initMusical(){
+        DatabaseReference myRef = database.getReference("Musical");
+        binding.progressmusical.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.recyclerViewmusical.setLayoutManager(new LinearLayoutManager(Dashboard.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.recyclerViewmusical.setAdapter(new Film_ListAdapter(items));
+                    }
+                    binding.progressmusical.setVisibility(View.GONE);
                 }
             }
 

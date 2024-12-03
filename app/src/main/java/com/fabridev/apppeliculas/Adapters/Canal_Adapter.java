@@ -16,44 +16,43 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.fabridev.apppeliculas.Activities.DetailsActivity;
+import com.fabridev.apppeliculas.Activities.DetailsCanales;
+import com.fabridev.apppeliculas.Activities.playmovie_Activity;
 import com.fabridev.apppeliculas.Domains.Film;
 import com.fabridev.apppeliculas.R;
 
 import java.util.ArrayList;
 
-public class List_Adapter extends RecyclerView.Adapter<List_Adapter.ViewHolder> {
+public class Canal_Adapter extends RecyclerView.Adapter<Canal_Adapter.ViewHolder> {
 
     ArrayList<Film> items;
     Context context;
 
-    public List_Adapter(ArrayList<Film> items) {
+    public Canal_Adapter(ArrayList<Film> items) {
         this.items = items;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Canal_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.canal_item, parent, false);
         return new ViewHolder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Canal_Adapter.ViewHolder holder, int position) {
         holder.titleTxt.setText(items.get(position).getTitle());
-        String genreString = String.join(", ", items.get(position).getGenre());
-        holder.categoriaTxt.setText(genreString);
-        holder.timeTxt.setText(items.get(position).getTime());
-        holder.yearTxt.setText(items.get(position).getYear() + "  |");
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
+
         Glide.with(context)
                 .load(items.get(position).getPoster())
                 .apply(requestOptions)
                 .into(holder.picList);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetailsActivity.class);
+            Intent intent = new Intent(context, DetailsCanales.class);
             intent.putExtra("object", items.get(position));
             context.startActivity(intent);
         });
@@ -64,16 +63,13 @@ public class List_Adapter extends RecyclerView.Adapter<List_Adapter.ViewHolder> 
         return items.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTxt, categoriaTxt, yearTxt, timeTxt;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTxt;
         ImageView picList;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTxt = itemView.findViewById(R.id.titleTxt);
-            categoriaTxt = itemView.findViewById(R.id.categoriaTxt);
-            yearTxt = itemView.findViewById(R.id.yearTxt);
-            timeTxt = itemView.findViewById(R.id.timeTxt);
             picList = itemView.findViewById(R.id.picList);
         }
     }

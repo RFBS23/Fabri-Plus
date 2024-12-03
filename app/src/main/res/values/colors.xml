@@ -11,6 +11,7 @@
     <!--colores botones de navegacion-->
     <color name="btn_inicio">#cfe2ff</color>
     <color name="btn_favorito">#f8d7da</color>
+    <color name="btn_tele">#6c757d</color>
     <color name="btn_series">#fff3cd</color>
     <color name="btn_info">#cff4fc</color>
 
@@ -18,6 +19,7 @@
     <color name="text_favorito">#57151d</color>
     <color name="text_series">#654c04</color>
     <color name="text_info">#055161</color>
+    <color name="text_tele">#FFFFFFFF</color>
     <color name="texto_navigator">#212529</color>
 
     <!--intro-->

@@ -1,26 +1,75 @@
 package com.fabridev.apppeliculas.ViewMore;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.fabridev.apppeliculas.Activities.Dashboard;
+import com.fabridev.apppeliculas.Activities.VerMasActivity;
+import com.fabridev.apppeliculas.Adapters.Film_ListAdapter;
+import com.fabridev.apppeliculas.Adapters.List_Adapter;
+import com.fabridev.apppeliculas.Domains.Film;
 import com.fabridev.apppeliculas.R;
+import com.fabridev.apppeliculas.databinding.ActivityCfiVmactivityBinding;
+import com.fabridev.apppeliculas.databinding.ActivityVerMasBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class CfiVMActivity extends AppCompatActivity {
-
+    ActivityCfiVmactivityBinding binding;
+    private FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_cfi_vmactivity);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityCfiVmactivityBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        database = FirebaseDatabase.getInstance();
+
+        Window w=getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        initcficion();
+    }
+
+    private void initcficion(){
+        DatabaseReference myRef = database.getReference("Cienciaficcion");
+        binding.btnBack.setOnClickListener(v -> finish());
+        binding.progressBar.setVisibility(View.VISIBLE);
+        ArrayList<Film> items = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot issue:snapshot.getChildren()){
+                        items.add(issue.getValue(Film.class));
+                    }
+                    if(!items.isEmpty()){
+                        binding.TituloCatTxt.setText("Ciencia Ficción");
+                        binding.movieListView.setLayoutManager(new LinearLayoutManager(CfiVMActivity.this, LinearLayoutManager.VERTICAL, false));
+                        binding.movieListView.setAdapter(new List_Adapter(items));
+                    }
+                    binding.progressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
     }
 }

@@ -27,6 +27,7 @@
     <string name="animes_dash">Animes</string>
     <string name="guerra_dash">Guerra</string>
     <string name="historia_dash">Historia</string>
+    <string name="musical_dash">Musical</string>
     <string name="pelitv_dash">Peliculas de Television</string>
     <string name="misterio_dash">Misterio</string>
     <string name="reciente_dash">Recientes</string>
@@ -34,6 +35,7 @@
     <!--bottom-->
     <string name="Inicio_bottom">Inicio</string>
     <string name="favoritos_bottom">Favoritos</string>
+    <string name="tele_bottom">TV</string>
     <string name="series_botton">Series</string>
     <string name="perfil_bottom">Más</string>
 
