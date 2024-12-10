@@ -7,6 +7,10 @@
     <color name="red">#FF0000</color>
     <color name="btn_navigator">#5468b9</color>
     <color name="btn_navigator2">#07130f</color>
+    <color name="indigo">#323145</color>
+    <color name="blue_gray">#6975a1</color>
+    <color name="periwinkle">#aaaace</color>
+    <color name="azul">#204fec</color>
 
     <!--colores botones de navegacion-->
     <color name="btn_inicio">#cfe2ff</color>

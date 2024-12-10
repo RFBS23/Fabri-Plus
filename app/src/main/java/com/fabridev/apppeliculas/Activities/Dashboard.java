@@ -64,7 +64,7 @@ public class Dashboard extends AppCompatActivity {
     private int selectedTab = 1;
 
     LinearLayout home_icon, like_icon, series_icon, icon_masinfo, televisor_icon;
-    ImageView iv_home, iv_like, iv_series, iv_masinfo,iv_tele;
+    ImageView iv_home, iv_like, iv_series, iv_masinfo,iv_tele, ivFavorito, ivCompartir;
     TextView txthome, txt_like, txt_series, txt_masinfo, txt_tele, txttodas, txtvmestreno, vmComedia, vmAnimacion, vmaccion, vmaventura, vmfantasia, vmfamilia, vmterror, vmsuspenso, vmdocumental, vmcficcion, vmcrimen, vmdrama, vmromance, vmanimes, vmguerra, vmhistoria, vmpelitv, vmmisterio, vmmusical;
 
     @Override
@@ -101,8 +101,8 @@ public class Dashboard extends AppCompatActivity {
         initPelisTV();
         initMisterio();
         initHistoria();
-    }
 
+    }
     ActivityMainBinding binding;
     private FirebaseDatabase database;
 
@@ -1143,6 +1143,7 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
+
     private void initMusical(){
         DatabaseReference myRef = database.getReference("Musical");
         binding.progressmusical.setVisibility(View.VISIBLE);

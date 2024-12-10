@@ -37,7 +37,7 @@
     <string name="favoritos_bottom">Favoritos</string>
     <string name="tele_bottom">TV</string>
     <string name="series_botton">Series</string>
-    <string name="perfil_bottom">Más</string>
+    <string name="perfil_bottom">Info</string>
 
     <!--slider-->
     <string name="btnSliderVH">Ver Trailer</string>
@@ -52,7 +52,19 @@
     <!--api-->
     <string name="btnreproducir_details">Reproducir</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- redes -->
+    <string name="redes">Redes Sociales</string>
+    <string name="telegram">Telegram</string>
+    <string name="instagram">Instragram</string>
+    <string name="facebook">Facebook</string>
+    <string name="tiktok">Tik Tok</string>
+    <string name="bmc">¿Me ayudarías regalándome un café?</string>
+    <string name="bmc_text">Haciendo click aqui \uD83D\uDC47</string>
+    <string name="bmc_link"><a href="https://buymeacoffee.com/fabrizioba7">buy me a coffee</a></string>
+    <string name="bmc_qr">o \n Escaneando el QR.</string>
+
+    <!-- desarrollador-->
+    <string name="nombre_dev">Fabrizio Barrios Saavedra</string>
+    <string name="apodo_dev">RFBS23</string>
 
 </resources>

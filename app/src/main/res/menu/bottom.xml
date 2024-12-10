@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/inicio"
-        android:icon="@drawable/btn_1"
+        android:icon="@drawable/inicio"
         android:title="@string/Inicio_bottom"
         app:cnb_backgroundColor="@color/btn_navigator"
         app:cnb_iconColor="@color/white"
     />
     <item
         android:id="@+id/favoritos"
-        android:icon="@drawable/btn_2"
+        android:icon="@drawable/favoritos"
         android:title="@string/favoritos_bottom"
         app:cnb_backgroundColor="@color/btn_navigator"
         app:cnb_iconColor="@color/white"
@@ -24,7 +24,7 @@
         />
     <item
         android:id="@+id/perfil"
-        android:icon="@drawable/btn_4"
+        android:icon="@drawable/info"
         android:title="@string/perfil_bottom"
         app:cnb_backgroundColor="@color/btn_navigator"
         app:cnb_iconColor="@color/white"
