@@ -68,7 +68,7 @@ public class DetailsActivity extends AppCompatActivity {
         binding.btnReproducir.setOnClickListener(v -> {
             String videoUrl = currentFilm.getTrailer();
             if (videoUrl != null && !videoUrl.isEmpty()) {
-                Intent intent = new Intent(DetailsActivity.this, playmovie_Activity.class);
+                Intent intent = new Intent(DetailsActivity.this, VideoPlayerActivity.class);
                 intent.putExtra("videoUrl", videoUrl);
                 startActivity(intent);
             } else {

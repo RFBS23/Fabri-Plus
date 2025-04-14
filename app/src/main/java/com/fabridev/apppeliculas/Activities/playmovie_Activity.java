@@ -48,14 +48,12 @@ public class playmovie_Activity extends AppCompatActivity {
                     if (url.contains("ads") || url.contains("adservice") || url.contains("redirect")) {
                         return true; // Bloquear
                     }
-
                     return false; // Permitir el resto de URLs
                 }
 
                 @Override
                 public void onPageFinished(WebView view, String url) {
                     super.onPageFinished(view, url);
-
                     // Inyectar JavaScript para eliminar elementos de anuncios
                     String adBlockScript = "javascript:(function() {" +
                             "var ads = document.querySelectorAll('[id*=ad], [class*=ad], [id*=banner], [class*=banner]');" +
@@ -64,13 +62,11 @@ public class playmovie_Activity extends AppCompatActivity {
                     view.evaluateJavascript(adBlockScript, null);
                 }
             });
-
             webView.loadUrl(videoUrl);
         } else {
             Toast.makeText(this, "URL no válida", Toast.LENGTH_SHORT).show();
             finish();
         }
-
     }
 
     @Override
