@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- permisos -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,20 +13,21 @@
         android:roundIcon="@mipmap/icono_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppPeliculas"
-        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".Activities.VideoPlayerActivity"
-            android:exported="false" />
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Activities.SeriesDetails"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Activities.DetailsCanales"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ViewMore.HistoriaActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ViewMore.MusicalVM"
             android:exported="true" />
@@ -89,13 +89,8 @@
             android:name=".Activities.VerMasActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.playmovie_Activity"
-            android:configChanges="orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".Activities.DetailsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Activities.Dashboard"
             android:exported="true" />

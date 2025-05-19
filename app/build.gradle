@@ -51,9 +51,12 @@ dependencies {
     implementation 'com.github.Dimezis:BlurView:version-2.0.6'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 
+    /*firebase*/
     implementation 'com.google.firebase:firebase-database:21.0.0'
     implementation 'com.google.firebase:firebase-core:21.1.1'
 
     /*reproductor*/
     implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.19.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.19.1'
 }

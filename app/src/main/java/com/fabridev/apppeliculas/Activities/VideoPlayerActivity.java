@@ -1,9 +1,7 @@
 package com.fabridev.apppeliculas.Activities;
 
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -16,22 +14,27 @@ import com.fabridev.apppeliculas.R;
 public class VideoPlayerActivity extends AppCompatActivity {
     private ExoPlayer player;
     private PlayerView playerView;
-    private PowerManager.WakeLock wakeLock;
+
+    private void hideSystemUi() {
+        playerView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        hideSystemUI();
         playerView = findViewById(R.id.player_view);
-        String videoUrl = getIntent().getStringExtra("videoUrl");
+        hideSystemUi();
 
-        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK |
-                PowerManager.ACQUIRE_CAUSES_WAKEUP, "VideoPlayerActivity::WakeLock");
-        wakeLock.acquire();
+        String videoUrl = getIntent().getStringExtra("videoUrl");
 
         if (videoUrl != null) {
             player = new ExoPlayer.Builder(this).build();
@@ -42,13 +45,16 @@ public class VideoPlayerActivity extends AppCompatActivity {
             player.prepare();
             player.play();
         }
+
+        playerView.setKeepScreenOn(true);
     }
 
-    private void hideSystemUI() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(uiOptions);
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUi();
+        }
     }
 
     @Override
@@ -56,9 +62,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
         super.onDestroy();
         if (player != null) {
             player.release();
-        }
-        if (wakeLock != null && wakeLock.isHeld()) {
-            wakeLock.release();
         }
     }
 }

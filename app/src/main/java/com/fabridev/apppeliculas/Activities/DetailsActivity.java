@@ -1,9 +1,7 @@
 package com.fabridev.apppeliculas.Activities;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +11,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
@@ -27,7 +22,6 @@ import com.fabridev.apppeliculas.Adapters.CategoryFilmAdapter;
 import com.fabridev.apppeliculas.Domains.Film;
 import com.fabridev.apppeliculas.R;
 import com.fabridev.apppeliculas.databinding.ActivityDetailsBinding;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 
 import eightbitlab.com.blurview.RenderScriptBlur;
 

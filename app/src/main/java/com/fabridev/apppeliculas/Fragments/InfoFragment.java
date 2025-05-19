@@ -27,17 +27,20 @@ public class InfoFragment extends Fragment {
         ImageView tiktokBtn = view.findViewById(R.id.imageView7);
         ImageView instagramBtn = view.findViewById(R.id.imageView8);
         ImageView facebookBtn = view.findViewById(R.id.imageView10);
+        ImageView youtubeBtn = view.findViewById(R.id.imageView11);
 
         // URLs de redes sociales
         String telegramUrl = "https://t.me/fabri_plus";
         String tiktokUrl = "https://www.tiktok.com/@fabriziobarrios_19";
         String instagramUrl = "https://www.instagram.com/fabridevperu";
         String facebookUrl = "https://www.facebook.com/share/1AZCnRLyRw/?mibextid=qi2Omg";
+        String youtubeUrl = "https://www.youtube.com/@FabriDev";
         // Listeners para abrir las redes sociales
         telegramBtn.setOnClickListener(v -> openUrl(telegramUrl));
         tiktokBtn.setOnClickListener(v -> openUrl(tiktokUrl));
         instagramBtn.setOnClickListener(v -> openUrl(instagramUrl));
         facebookBtn.setOnClickListener(v -> openUrl(facebookUrl));
+        youtubeBtn.setOnClickListener(v->openUrl(youtubeUrl));
         return view;
     }
 
