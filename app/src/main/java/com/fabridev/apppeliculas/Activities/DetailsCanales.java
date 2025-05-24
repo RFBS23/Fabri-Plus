@@ -59,7 +59,7 @@ public class DetailsCanales extends AppCompatActivity {
             public void onClick(View v) {
                 String videoUrl = item.getTrailer();
                 if (videoUrl != null && !videoUrl.isEmpty()) {
-                    Intent intent = new Intent(DetailsCanales.this, playmovie_Activity.class);
+                    Intent intent = new Intent(DetailsCanales.this, ReproductorMovie.class);
                     intent.putExtra("videoUrl", videoUrl);
                     startActivity(intent);
                 } else {

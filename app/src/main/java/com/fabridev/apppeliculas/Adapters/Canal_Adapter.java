@@ -15,9 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.fabridev.apppeliculas.Activities.DetailsActivity;
 import com.fabridev.apppeliculas.Activities.DetailsCanales;
-import com.fabridev.apppeliculas.Activities.playmovie_Activity;
 import com.fabridev.apppeliculas.Domains.Film;
 import com.fabridev.apppeliculas.R;
 
