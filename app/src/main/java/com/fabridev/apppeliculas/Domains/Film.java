@@ -79,4 +79,20 @@ public class Film implements Serializable {
     public void setCasts(ArrayList<Cast> casts) {
         Casts = casts;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Film film = (Film) o;
+
+        return Title != null ? Title.equals(film.Title) : film.Title == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return Title != null ? Title.hashCode() : 0;
+    }
+
 }

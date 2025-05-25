@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_white_bg"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_titulo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_subtitulo"
+        android:textSize="16sp"
+        android:textColor="#555"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnContinueData"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_btndatos"
+        android:background="@android:color/transparent"
+        android:textColor="#007AFF"/>
+
+    <Button
+        android:id="@+id/btnEnableWifi"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_btnwifi"
+        android:background="@android:color/transparent"
+        android:textColor="#007AFF"/>
+</LinearLayout>

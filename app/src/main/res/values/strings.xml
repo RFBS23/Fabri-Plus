@@ -49,6 +49,15 @@
     <string name="age_api">Edad</string>
     <string name="time_api">Tiempo</string>
 
+    <!--dialog-->
+    <string name="dialog_titulo">Aviso importante</string>
+    <string name="dialog_subtitulo">Algunos videos consumen muchos datos móviles. Recomendamos activar Wi-Fi.</string>
+    <string name="dialog_btndatos">Continuar con datos</string>
+    <string name="dialog_btnwifi">Activar Wi-Fi</string>
+
+    <!--fragment favoritos-->
+    <string name="fragment_noFavorite">No has agregado contenido a tu lista de favoritos.</string>
+
     <!--api-->
     <string name="btnreproducir_details">Reproducir</string>
 

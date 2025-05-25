@@ -33,17 +33,13 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Vi
     @Override
     public Favoritos_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.fav_item, parent, false);
         return new Favoritos_Adapter.ViewHolder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Favoritos_Adapter.ViewHolder holder, int position) {
         holder.titleTxt.setText(items.get(position).getTitle());
-        String genreString = String.join(", ", items.get(position).getGenre());
-        holder.categoriaTxt.setText(genreString);
-        holder.timeTxt.setText(items.get(position).getTime());
-        holder.yearTxt.setText(items.get(position).getYear() + "  |");
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
         Glide.with(context)

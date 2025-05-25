@@ -77,21 +77,6 @@
                             android:textSize="30sp"
                             android:textStyle="bold" />
 
-                        <ImageView
-                            android:id="@+id/ivCompartir"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            app:srcCompat="@drawable/share" />
-
-                        <ImageView
-                            android:id="@+id/ivFavorito"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/bookmark" />
-
                     </LinearLayout>
 
                     <View

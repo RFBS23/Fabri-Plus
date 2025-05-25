@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.fabridev.apppeliculas.Adapters.CastListAdapter;
 import com.fabridev.apppeliculas.Adapters.CategoryFilmAdapter;
 import com.fabridev.apppeliculas.Domains.Film;
+import com.fabridev.apppeliculas.Temp.FavoritosTemp;
 import com.fabridev.apppeliculas.R;
 import com.fabridev.apppeliculas.databinding.ActivityDetailsBinding;
 
@@ -99,7 +100,6 @@ public class DetailsActivity extends AppCompatActivity {
         binding.ivFavorito.setOnClickListener(v -> {
             isFavorite = !isFavorite;
             updateFavoriteIcon();
-            // Aquí puedes guardar el estado en SharedPreferences o en una base de datos
         });
 
         binding.ivCompartir.setOnClickListener(v -> {
@@ -115,14 +115,33 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void updateFavoriteIcon() {
         if (isFavorite) {
-            binding.ivFavorito.setImageResource(R.drawable.favoritos);
+            binding.ivFavorito.setImageResource(R.drawable.marcador);
+
+            if (!FavoritosTemp.listaFavoritos.contains(currentFilm)) {
+                FavoritosTemp.listaFavoritos.add(currentFilm);
+            }
         } else {
             binding.ivFavorito.setImageResource(R.drawable.bookmark);
+
+            // Eliminar el objeto currentFilm de la lista usando comparación manual
+            for (int i = 0; i < FavoritosTemp.listaFavoritos.size(); i++) {
+                Film film = FavoritosTemp.listaFavoritos.get(i);
+                if (film.getTitle().equals(currentFilm.getTitle())) {  // O mejor usar ID único si tienes
+                    FavoritosTemp.listaFavoritos.remove(i);
+                    break;
+                }
+            }
         }
     }
 
     private void loadFavoriteStatus() {
         isFavorite = false;
+        for (Film film : FavoritosTemp.listaFavoritos) {
+            if (film.getTitle().equals(currentFilm.getTitle())) {
+                isFavorite = true;
+                break;
+            }
+        }
         updateFavoriteIcon();
     }
 }

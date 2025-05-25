@@ -1,13 +1,26 @@
 package com.fabridev.apppeliculas.Activities;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -59,9 +72,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import eightbitlab.com.blurview.BlurView;
+
 public class Dashboard extends AppCompatActivity {
 
     private int selectedTab = 1;
+    private BlurView blurView;
 
     LinearLayout home_icon, like_icon, series_icon, icon_masinfo, televisor_icon;
     ImageView iv_home, iv_like, iv_series, iv_masinfo,iv_tele, ivFavorito, ivCompartir;
@@ -75,6 +91,14 @@ public class Dashboard extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         loadUI();
         activitys();
+
+        blurView = findViewById(R.id.blurView);
+        float radius = 15f;
+        ViewGroup root = findViewById(R.id.main);
+        Drawable windowBackground = getWindow().getDecorView().getBackground();
+        blurView.setupWith(root)
+                .setFrameClearDrawable(windowBackground)
+                .setBlurRadius(radius);
 
         Window w=getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -102,6 +126,7 @@ public class Dashboard extends AppCompatActivity {
         initMisterio();
         initHistoria();
 
+        checkWifiConnection();
     }
     ActivityMainBinding binding;
     private FirebaseDatabase database;
@@ -113,6 +138,53 @@ public class Dashboard extends AppCompatActivity {
             binding.viewPagerBanners.setCurrentItem(binding.viewPagerBanners.getCurrentItem() + 1 );
         }
     };
+
+    private void checkWifiConnection() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkRequest request = new NetworkRequest.Builder().build();
+
+        connectivityManager.registerNetworkCallback(request, new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(Network network) {
+                NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+                if (capabilities != null && !capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    runOnUiThread(() -> showWifiAlertDialog());
+                }
+            }
+        });
+    }
+
+    private void showWifiAlertDialog() {
+        runOnUiThread(() -> {
+            blurView.setVisibility(View.VISIBLE);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog);
+            View view = LayoutInflater.from(this).inflate(R.layout.dialog_wifi_warning, null);
+            builder.setView(view);
+            builder.setCancelable(false);
+
+            AlertDialog dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // fondo transparente
+
+            Button btnContinueData = view.findViewById(R.id.btnContinueData);
+            Button btnEnableWifi = view.findViewById(R.id.btnEnableWifi);
+
+            btnContinueData.setOnClickListener(v -> {
+                blurView.setVisibility(View.GONE);
+                dialog.dismiss();
+            });
+            btnEnableWifi.setOnClickListener(v -> {
+                blurView.setVisibility(View.GONE);
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                dialog.dismiss();
+            });
+
+            dialog.setOnDismissListener(d -> blurView.setVisibility(View.GONE)); // asegurar ocultar blur si se cierra de otra forma
+
+            dialog.show();
+        });
+    }
 
     private void loadUI() {
         home_icon = findViewById(R.id.home_icon);

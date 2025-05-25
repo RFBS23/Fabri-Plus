@@ -1,7 +1,6 @@
 package com.fabridev.apppeliculas.Fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,59 +8,71 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.fabridev.apppeliculas.Adapters.SlidersAdapter;
-import com.fabridev.apppeliculas.Domains.SliderItems;
-import com.fabridev.apppeliculas.R;
+import com.fabridev.apppeliculas.Adapters.Favoritos_Adapter;
+import com.fabridev.apppeliculas.Domains.Film;
+import com.fabridev.apppeliculas.Adapters.Film_ListAdapter;
+import com.fabridev.apppeliculas.Temp.FavoritosTemp;
 import com.fabridev.apppeliculas.databinding.FragmentFavoritosBinding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FavoritosFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentFavoritosBinding binding;
+    private Film_ListAdapter adapter;
+    private List<Film> listaFavoritos = new ArrayList<>();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public FavoritosFragment() {
-        // Required empty public constructor
-    }
-
-    public static InfoFragment newInstance(String param1, String param2) {
-        InfoFragment fragment = new InfoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        binding = FragmentFavoritosBinding.inflate(inflater, container, false);
+
+        View view = binding.getRoot();
+
+        listaFavoritos.clear();
+        listaFavoritos.addAll(FavoritosTemp.listaFavoritos);
+
+        adapter = new Film_ListAdapter((ArrayList<Film>) listaFavoritos);
+
+        setupRecyclerView();
+        actualizarVista();
+
+        return view;
+    }
+
+    private void setupRecyclerView() {
+        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
+        flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
+        flexboxLayoutManager.setFlexWrap(FlexWrap.WRAP);
+        binding.movieListView.setLayoutManager(flexboxLayoutManager);
+        binding.movieListView.setAdapter(adapter);
+    }
+
+    private void actualizarVista() {
+        if (listaFavoritos.isEmpty()) {
+            binding.movieListView.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.GONE);
+            binding.textViewEmpty.setVisibility(View.VISIBLE);
+        } else {
+            binding.movieListView.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.GONE);
+            binding.textViewEmpty.setVisibility(View.GONE);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info, container, false);
+    public void onResume() {
+        super.onResume();
+        listaFavoritos.clear();
+        listaFavoritos.addAll(FavoritosTemp.listaFavoritos);
+        adapter.notifyDataSetChanged();
+        actualizarVista();
     }
 }

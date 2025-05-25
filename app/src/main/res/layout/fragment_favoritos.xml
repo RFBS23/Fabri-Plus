@@ -71,10 +71,22 @@
                 android:id="@+id/movieListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:paddingStart="8dp"
-                tools:listitem="@layout/fav_item"
-                android:paddingEnd="8dp" />
+                android:paddingStart="28dp"
+                android:paddingEnd="28dp"
+                tools:listitem="@layout/list_item" />
+
+            <TextView
+                android:id="@+id/textViewEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/fragment_noFavorite"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:padding="16dp" />
 
         </LinearLayout>
     </ScrollView>

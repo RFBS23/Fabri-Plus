@@ -323,7 +323,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--nuevos-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1242,8 +1241,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--fin nuevos-->
         </LinearLayout>
+
     </ScrollView>
 
     <androidx.fragment.app.FragmentContainerView
@@ -1409,7 +1408,12 @@
                 android:textColor="@color/texto_navigator"
                 android:textSize="16sp"/>
         </LinearLayout>
-
     </LinearLayout>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
